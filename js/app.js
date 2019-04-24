@@ -17,7 +17,7 @@ var Enemy = function (x, y, speed) {
     this.y = y;
     this.speed = speed;
     this.height = 101;
-    this.movementOffset = (Math.random() * 100) + 50;
+    this.movementOffset = (Math.random() * 500) + 100;
     this.canvasCol = 0;
 };
 
@@ -27,17 +27,11 @@ Enemy.prototype.update = function (dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    allEnemies.forEach(enemy => {
-        enemy.x += enemy.movementOffset * dt;
-        if (enemy.x >= canvasWidth * 5) {
-            enemy.x = -canvasWidth;
-        }
-        enemy.canvasCol = Math.floor((enemy.x+150)/canvasWidth);
-
-    });
-
-
-
+    this.x += this.movementOffset * dt;
+    if (this.x >= canvasWidth * 5) {
+        this.x = -canvasWidth;
+    }
+    this.canvasCol = Math.floor((this.x + 150) / canvasWidth);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -48,7 +42,7 @@ Enemy.prototype.render = function () {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function (x, y) {
+var Player =  (x, y) => {
     this.sprite = 'images/char-boy.png';
     this.x = x;
     this.y = y;
@@ -63,7 +57,6 @@ Player.prototype.update = function () {
     allEnemies.forEach(enemy => {
         // console.log(enemy.x);
         if (enemy.y == this.y && enemy.canvasCol == this.canvasCol) {
-            console.log('player lost');
             winCount = 0;
             numWins.innerHTML = winCount;
             this.x = canvasWidth * 2;
@@ -81,28 +74,27 @@ Player.prototype.render = function () {
 Player.prototype.handleInput = function (pressedKey) {
     //handle controls using if-else statements
     if (pressedKey == 'left') {
-        if (player.x >= canvasHeight) {
-            player.x -= canvasWidth;
-            player.canvasCol--;
+        if (this.x >= canvasHeight) {
+            this.x -= canvasWidth;
+            this.canvasCol--;
         }
     } else if (pressedKey == 'right') {
-        if (player.x <= canvasHeight * 5) {
-            player.x += canvasWidth;
-            player.canvasCol++;
+        if (this.x <= canvasHeight * 5) {
+            this.x += canvasWidth;
+            this.canvasCol++;
         }
     } else if (pressedKey == 'up') {
         //move player one block up 
-        player.y -= canvasHeight;
+        this.y -= canvasHeight;
         // check if the player won
-        if (player.y < canvasHeight) {
+        if (this.y < canvasHeight) {
             winCount++;
             numWins.innerHTML = winCount;
-            console.log(winCount);
-            player.y = canvasHeight * 5
+            this.y = canvasHeight * 5
         }
     } else { //down
-        if (player.y < canvasHeight * 5) {
-            player.y += canvasHeight;
+        if (this.y < canvasHeight * 5) {
+            this.y += canvasHeight;
         }
     }
 }
