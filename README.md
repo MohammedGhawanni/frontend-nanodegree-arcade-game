@@ -1,5 +1,8 @@
 ##Instructions:
-Just run the game using any virtual server.
+1. Clone the repo from Github using `git clone https://github.com/MohammedGhawanni/frontend-nanodegree-arcade-game.git`
+2. Start a virtual server (_MAMP or XAMP_) at the location where the repo was cloned
+3. Go to localhost:_port#_/**index.htm** in any browser to run the game
+4. Use arrow keys to control the character
 
 
 ###Specifications:
