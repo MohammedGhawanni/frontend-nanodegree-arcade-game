@@ -32,7 +32,7 @@ Enemy.prototype.update = function (dt) {
         if (enemy.x >= canvasWidth * 5) {
             enemy.x = -canvasWidth;
         }
-        enemy.canvasCol = Math.floor((enemy.x+100)/canvasWidth);
+        enemy.canvasCol = Math.floor((enemy.x+150)/canvasWidth);
 
     });
 
