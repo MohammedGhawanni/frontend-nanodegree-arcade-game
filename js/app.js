@@ -42,7 +42,7 @@ Enemy.prototype.render = function () {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player =  (x, y) => {
+var Player =  function(x, y){
     this.sprite = 'images/char-boy.png';
     this.x = x;
     this.y = y;
@@ -53,7 +53,6 @@ Player.prototype.update = function () {
     // since button clicks are already checked for
     // we will only check for collisions here(with other enemies)
     // since the array is already in the scope
-    // console.log(player.canvasCol);
     allEnemies.forEach(enemy => {
         // console.log(enemy.x);
         if (enemy.y == this.y && enemy.canvasCol == this.canvasCol) {
